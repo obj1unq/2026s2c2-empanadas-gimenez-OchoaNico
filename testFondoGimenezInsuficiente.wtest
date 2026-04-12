@@ -1,0 +1,17 @@
+import empleados.*
+
+test "Test fondo gimenez insuficiente caso 1" {
+	
+    baigorria.vender(20000)//Arrange
+    gimenez.pagarSueldo(baigorria)//Act
+    assert.equals(0,gimenez.fondo())//Assert
+
+    baigorria.vender(1)//Arrange
+    assert.throwsException({gimenez.pagarSueldo(baigorria)}) //Assert
+ 	
+}
+
+test "Test fondo gimenez insuficiente caso 2"{
+    baigorria.vender(20001)//Arrange
+    assert.throwsException({gimenez.pagarSueldo(baigorria)})
+}

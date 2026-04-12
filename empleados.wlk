@@ -70,10 +70,20 @@ object gimenez {
     var fondoDeSueldos = 300000
 
     method pagarSueldo(empleado){
-        
-        fondoDeSueldos = fondoDeSueldos - empleado.sueldo()
+        const cantidadAPagar = empleado.sueldo()
+        self.validarPago(cantidadAPagar)
         empleado.cobrarSueldo()
+        fondoDeSueldos = fondoDeSueldos - cantidadAPagar
+    }
 
+    method validarPago(cantidadAPagar) {
+        if(not(self.puedePagarSueldoDe(cantidadAPagar))){
+            self.error("No puede pagar un sueldo de "+ cantidadAPagar)
+        }
+    }
+
+    method puedePagarSueldoDe(cantidadAPagar){
+        return (fondoDeSueldos >= cantidadAPagar)
     }
 
     method fondo(){
